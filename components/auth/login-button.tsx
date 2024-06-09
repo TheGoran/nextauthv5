@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 //Define props and types
 interface LoginButtonProps {
     children: React.ReactNode;
@@ -13,11 +15,21 @@ export const LoginButton = ({
     mode = "redirect",  //setting default value to be redirect
     asChild
 }: LoginButtonProps) => {
-    const whenClickeddy  = () => {
-        console.log("LOGIN BUTTON WAS CLICKEDY");
+    const router = useRouter();
+    const onClickLogin  = () => {
+        router.push("/auth/login")
     }
+
+    if (mode ==="modal") {
+        return (
+            <span>
+                TODO: Implement modal
+            </span>
+        )
+    }
+
     return (
-        <span onClick={whenClickeddy} className="cursor-pointer">
+        <span onClick={onClickLogin} className="cursor-pointer">
             {children}
         </span>
     )
